@@ -1,0 +1,31 @@
+<div class="container py-2" style="min-height: calc(100vh - 133px)">
+    <form [formGroup]="contact" (ngSubmit)="sub()">
+        <label class="my-2">Name</label>
+        <input  placeholder="first letter capital" formControlName="name" type="text" class="form-control my-4">
+        <p class="alert alert-danger my-2" 
+        *ngIf="contact.controls.name.errors?.required && contact.controls.name.touched">Name is required</p>
+        <p  *ngIf="contact.controls.name.errors?.pattern && contact.controls.name.touched" class="alert alert-danger my-2">First Letter Must Be Capital</p>
+
+
+
+        <label class="my-2">Email</label>
+        <input placeholder="enter a valid email" formControlName="email" type="email" class="form-control my-4">
+        <p  *ngIf="contact.controls.email.errors?.required && contact.controls.email.touched" class="alert alert-danger my-2">email is required</p>
+        <p   *ngIf="contact.controls.email.errors?.email && contact.controls.email.touched" class="alert alert-danger my-2">enter a valid email</p>
+
+
+
+
+        <label class="my-2">Your Opinion</label>
+        <textarea placeholder="minlength is 15" formControlName="opinion" type="text" class="form-control my-4" style="height: 100px"></textarea>
+        <p  *ngIf="contact.controls.opinion.errors?.required && contact.controls.opinion.touched" class="alert alert-danger my-2">Your Opinion is required</p>
+        <p  *ngIf="contact.controls.opinion.errors?.minlength && contact.controls.opinion.touched" class="alert alert-danger my-2">Min Length is 15</p>
+
+
+
+        <button class="btn btn-primary" [disabled]="contact.invalid">Submit</button>
+    </form>
+   <div class="text-center" *ngIf="done">
+        <p class="btn btn-success font-weight-bold">Done</p>
+   </div>
+</div>
